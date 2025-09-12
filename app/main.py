@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 import requests
+from app.Utils import logs
+
 
 
 app = FastAPI()
@@ -16,6 +18,7 @@ async def say_hello(name: str):
 
 @app.get("/exp_date/{hashed_id}")
 async def get_exp_date(hashed_id: str):
+    logs.write_log(f"{hashed_id}")
     url = "http://193.168.147.19:8080/api/v2/tables/mrhmckd3wail7m7/records"
     params = {
         "viewId": "vwc0b9bld9wt63eq",
